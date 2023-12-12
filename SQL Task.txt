@@ -1,0 +1,87 @@
+//1
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    phone_number VARCHAR(20),
+    address VARCHAR(255),
+    city VARCHAR(50),
+    country VARCHAR(50),
+
+);
+
+//2
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10, 2),
+    payment_status VARCHAR(20),
+    shipping_address VARCHAR(255),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+
+//3
+
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    unit_price DECIMAL(8, 2),
+    stock_quantity INT,
+    supplier_id INT,
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
+);
+
+//4
+
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    hire_date DATE,
+    job_title VARCHAR(50),
+    manager_id INT,
+    FOREIGN KEY (manager_id) REFERENCES employees(employee_id)
+);
+
+   customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    phone_number VARCHAR(20),
+    address VARCHAR(255),
+    city VARCHAR(50),
+    country VARCHAR(50),
+
+//1
+INSERT INTO customers (customer_id, first_name, last_name, email, phone_number, address, city,country)
+VALUES
+  (1, 'John', 'Doe', 'john.doe@example.com', '123-456-7890', '123 Main St', 'Cityville','USA');
+
+//2
+
+INSERT INTO orders (order_id, customer_id, order_date, total_amount, payment_status, shipping_address)
+VALUES
+  (101, 1, '2023-02-10', 150.00, 'Paid', '123 Main St, Cityville, CA 12345'),
+  (102, 2, '2023-02-12', 200.50, 'Pending', '456 Oak St, Townsville, NY 54321');
+
+//3
+
+INSERT INTO products (product_id, product_name, category, unit_price, stock_quantity, supplier_id)
+VALUES
+  (201, 'Laptop', 'Electronics', 899.99, 50, 301),
+  (202, 'Desk Chair', 'Furniture', 129.99, 30, 302);
+
+//4
+
+-- Insert data into 'employees'
+INSERT INTO employees (employee_id, first_name, last_name, hire_date, job_title, manager_id)
+VALUES
+  (301, 'Alice', 'Johnson', '2022-01-15', 'Manager', NULL),
+  (302, 'Bob', 'Williams', '2022-02-01', 'Supervisor', 301);
+
+  
